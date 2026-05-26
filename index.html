@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Keylogger Simulation – Cyber Security Project</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(135deg, #000428, #004e92);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+    }
+
+    .card {
+        width: 450px;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 25px;
+        border-radius: 15px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    }
+
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 26px;
+    }
+
+    textarea {
+        width: 100%;
+        height: 150px;
+        border: none;
+        border-radius: 10px;
+        padding: 10px;
+        font-size: 15px;
+        outline: none;
+        background: rgba(255,255,255,0.2);
+        color: #fff;
+    }
+
+    button {
+        width: 100%;
+        margin-top: 15px;
+        padding: 12px;
+        border: none;
+        border-radius: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        background: #00eaff;
+        color: #000;
+        font-weight: 600;
+        transition: 0.3s;
+    }
+
+    button:hover {
+        background: #11ffee;
+        transform: scale(1.05);
+    }
+
+    .output-box {
+        margin-top: 20px;
+        padding: 10px;
+        background: #0d0d0d;
+        border-radius: 10px;
+        height: 150px;
+        overflow-y: auto;
+        color: #00ff6a;
+        box-shadow: inset 0 0 10px #008f4c;
+        font-family: Consolas, monospace;
+    }
+</style>
+
+</head>
+<body>
+
+<div class="card">
+    <h2>🔐 Keylogger Simulation UI</h2>
+
+    <textarea id="userInput" placeholder="Type something..."></textarea>
+
+    <button onclick="generateOutput()">Show Output</button>
+    <button onclick="downloadDoc()">Download Document</button>
+
+    <div class="output-box" id="outputBox">
+        Output will appear here...
+    </div>
+</div>
+
+<script>
+function generateOutput() {
+    let text = document.getElementById("userInput").value;
+    let time = new Date().toLocaleTimeString();
+
+    let formatted =
+`----- KEYLOGGER SIMULATION OUTPUT -----
+User Input:
+${text}
+
+Captured At: ${time}
+---------------------------------------`;
+
+    document.getElementById("outputBox").innerText = formatted;
+}
+
+function downloadDoc() {
+    let text = document.getElementById("userInput").value;
+    let time = new Date().toLocaleTimeString();
+
+    let content =
+`CYBER SECURITY PROJECT
+SAFE KEYLOGGER SIMULATION
+
+USER INPUT:
+${text}
+
+CAPTURED AT:
+${time}
+
+Generated Automatically`;
+
+    let blob = new Blob([content], { type: "text/plain" });
+    let link = document.createElement("a");
+    link.href = URL.createObjectURL(blob);
+    link.download = "Keylogger_Report.txt";
+    link.click();
+}
+</script>
+
+</body>
+</html>
